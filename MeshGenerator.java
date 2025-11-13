@@ -17,13 +17,10 @@ public class MeshGenerator
             {
                 float final_height = height_map[y][x];
 
-                //if(final_height < 0.2f) final_height = 0.2f;
-
                 vertices.add(new Vector3(x, final_height * 20f, y));
-                float uv_scale = width; // controla quantas vezes a textura se repete
+                float uv_scale = width;
                 uvs.add(new Vector2((float)x / uv_scale, (float)y / uv_scale));
-               // uvs.add(new Vector2((float)x / (width - 1), 1f - (float)y / (width - 1)));
-                normals.add(new Vector3(0, 1, 0)); // inicializa normal
+                normals.add(new Vector3(0, 1, 0));
             }
         }
 
@@ -41,7 +38,6 @@ public class MeshGenerator
             }
         }
 
-        // calcula normais por face e soma nos vértices
         for (int i = 0; i < triangles.size(); i++)
         {
             Vector3 tri = triangles.get(i);
@@ -59,7 +55,6 @@ public class MeshGenerator
             normals.get((int)tri.z).add(normal);
         }
 
-        // normaliza as normais médias
         for (int i = 0; i < normals.size(); i++)
         {
             normals.get(i).normalizeLocal();
